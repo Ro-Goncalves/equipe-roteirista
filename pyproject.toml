@@ -9,6 +9,7 @@ readme = "README.md"
 python = ">=3.10,<=3.13"
 crewai = {extras = ["tools"], version = "^0.63.6"}
 streamlit = "^1.38.0"
+pysqlite3-binary = "^0.5.3.post1"
 
 [build-system]
 requires = ["poetry-core"]
