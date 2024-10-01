@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 from datetime import datetime
 from equipe.roteirista_execute import RoteiristaController
 
@@ -6,7 +7,13 @@ from equipe.roteirista_execute import RoteiristaController
 controller = RoteiristaController()
 
 # Config
-st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬")
+st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬", menu_items={
+    'Get Help': 'https://www.extremelycoolapp.com/help',
+    'Report a bug': "https://www.extremelycoolapp.com/bug",
+    'About': "# This is a header. This is an *extremely* cool app!"
+    })
+
+st.title("🎥 Roteirizador")
 
 # Definição dos modelos e seus custos
 MODELOS = {
@@ -63,8 +70,7 @@ def display_token_usage():
     
     col1_total, col2_total = st.sidebar.columns(2)
     col1_total.metric(label="Total de Tokens", value=f"{st.session_state.total_tokens:,}")
-    col2_total.metric("Custo Estimado", f"${custo_total:.4f}")
-    
+    col2_total.metric("Custo Estimado", f"${custo_total:.4f}")    
 
 def analisar_texto(texto):
     palavras = texto.split()
@@ -74,8 +80,7 @@ def analisar_texto(texto):
     }
 
 def main():
-    # Sidebar
-    st.sidebar.title("Roteirizador")    
+    # Sidebar       
     st.sidebar.info("Esta ferramenta transforma um texto base em um roteiro estruturado.")   
     
     # Seleção do modelo
@@ -87,9 +92,6 @@ def main():
     
     # Display Token Usage KPIs in sidebar
     display_token_usage()
-
-    # Main content
-    st.title("Criar Roteiro")
    
     # Input area
     if st.session_state.show_input:
@@ -175,9 +177,7 @@ def main():
                 col1.metric("Total", f"{item['token_usage']['total_tokens']:,}")
                 col2.metric("Prompt", f"{item['token_usage']['prompt_tokens']:,}")
                 col3.metric("Resposta", f"{item['token_usage']['completion_tokens']:,}")
-                st.write(f"Requisições bem-sucedidas: {item['token_usage']['successful_requests']}")
-                custo_estimado = calcular_custo(item['token_usage']['prompt_tokens'], item['token_usage']['completion_tokens'], st.session_state.modelo_selecionado)
-                st.write(f"**Custo Estimado:** ${custo_estimado:.4f}")
+                st.write(f"Requisições bem-sucedidas: {item['token_usage']['successful_requests']}")                
                 st.divider()
                 if 'tasks_output' in item:
                     st.subheader("Resultados das Tarefas")

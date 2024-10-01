@@ -50,18 +50,25 @@ tarefa_criacao_roteiro:
 
 tarefa_revisao_roteiro:
   description: >
-    Sua tarefa é revisar o roteiro criado pelo Agente Roteirista, garantindo que ele seja coeso, consistente e fiel 
-    ao contexto narrativo estabelecido pelo Agente Analista de Texto. Você deve verificar se o roteiro segue 
-    corretamente a estrutura de Conflito Inicial, Desenvolvimento, Clímax, Resolução e Conclusão, analisando 
-    também se as emoções e tópicos de conversa estão bem representados e se há transições fluidas entre as partes. 
-    Em caso de inconsistências, sugerir ajustes que alinhem o roteiro com o contexto emocional e narrativo original.
+    Sua tarefa é **Revisar o Roteiro Criado**, garantindo que ele seja **Coeso**, **Consistente** e fiel ao 
+    **<texto_base>**.
+
+    Você deve **Verificar** se o roteiro segue corretamente a estrutura de: 
+      * **Conflito Inicial**, 
+      * **Desenvolvimento**, 
+      * **Clímax**, 
+      * **Resolução** ,
+      * **Conclusão**. 
+      
+    Analisando também se as **Emoções** e **Tópicos de Conversa** estão **Bem Representados** e se há 
+    **Transições Fluidas** entre as partes. Em caso de **Inconsistências**, **Sugerir Ajustes** que 
+    alinhem o roteiro com o **Contexto Emocional** e **Narrativo Original**.
    
     <texto_base>
     {texto_base}
     </texto_base>   
    
   expected_output: >
-    Você deverá entregar um roteiro revisado, assegurando que todas as partes estejam bem conectadas e que o 
-    contexto original, as emoções e os tópicos de conversa estejam preservados e consistentes. Caso encontre 
-    inconsistências ou desvios, você deverá sugerir melhorias que garantam que o roteiro esteja coeso e envolvente, 
-    fluindo de maneira lógica e alinhada com a narrativa estabelecida.
+    Você deverá entregar um **Roteiro Revisado** em **Português Brasileiro**, garantindo que todas as 
+    partes estejam **Bem Conectadas** e que o **Contexto Original**, as **Emoções** e os 
+    **Tópicos de Conversa** sejam preservados e permaneçam **Consistentes**.
