@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime
-from .equipe.roteirista_execute import RoteiristaController
+from equipe.roteirista_execute import RoteiristaController
 
 # Inicialização do controlador e variáveis de sessão
 controller = RoteiristaController()
