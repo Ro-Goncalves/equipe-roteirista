@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime
-from equipe.roteirista_execute import RoteiristaController
+from .equipe.roteirista_execute import RoteiristaController
 
 # Inicialização do controlador e variáveis de sessão
 controller = RoteiristaController()
@@ -80,7 +80,7 @@ def main():
     
     # Seleção do modelo
     st.session_state.modelo_selecionado = st.sidebar.selectbox(
-        "Selecione o modelo",
+        "Selecione o modelo para calcular custo",
         options=list(MODELOS.keys()),
         index=list(MODELOS.keys()).index(st.session_state.modelo_selecionado)
     )
