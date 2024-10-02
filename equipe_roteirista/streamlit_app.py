@@ -3,16 +3,8 @@ from PIL import Image
 from datetime import datetime
 from equipe.roteirista_execute import RoteiristaController
 
-# Inicialização do controlador e variáveis de sessão
-controller = RoteiristaController()
-
 # Config
-st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬", menu_items={
-    'Get Help': 'https://www.extremelycoolapp.com/help',
-    'Report a bug': "https://www.extremelycoolapp.com/bug",
-    'About': "# This is a header. This is an *extremely* cool app!"
-    })
-
+st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬")
 st.title("🎥 Roteirizador")
 
 # Definição dos modelos e seus custos
@@ -78,6 +70,13 @@ def analisar_texto(texto):
         "num_palavras": len(palavras),
         "tempo_leitura": len(palavras) // 200  # Assumindo uma velocidade média de leitura de 200 palavras por minuto
     }
+    
+# Dessa forma evitamos o erro WARNING: Overriding of current TracerProvider is not allowed    
+@st.cache_resource
+def get_controller():
+    return RoteiristaController()
+
+controller = get_controller()
 
 def main():
     # Sidebar       
@@ -87,7 +86,6 @@ def main():
     st.session_state.modelo_selecionado = st.sidebar.selectbox(
         "Selecione o modelo para calcular custo",
         options=list(MODELOS.keys()),
-        index=list(MODELOS.keys()).index(st.session_state.modelo_selecionado)
     )
     
     # Display Token Usage KPIs in sidebar
