@@ -69,6 +69,6 @@ tarefa_revisao_roteiro:
     </texto_base>   
    
   expected_output: >
-    Você deverá entregar um **Roteiro Revisado** em **Português Brasileiro**, garantindo que todas as 
+    Você deverá entregar um **Roteiro Revisado**, que deve ser escrito em **Português Brasileiro**, garantindo que todas as 
     partes estejam **Bem Conectadas** e que o **Contexto Original**, as **Emoções** e os 
     **Tópicos de Conversa** sejam preservados e permaneçam **Consistentes**. 
