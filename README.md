@@ -22,7 +22,6 @@
   - [Passos para Contribuir 📝](#passos-para-contribuir-)
 - [Licença 📜](#licença-)
 - [Contato 📫](#contato-)
-- [Contatos 📫](#contatos-)
 
 ## Descrição ✍️
 
@@ -229,8 +228,6 @@ Leia o arquivo LICENSE para mais detalhes.
 ## Contato 📫
 
 Se você tiver dúvidas ou sugestões, sinta-se à vontade para entrar em contato:
-
-## Contatos 📫
 
 - **LinkedIn:** 🔗 [Meu Perfil no LinkedIn](https://www.linkedin.com/in/ro-goncalves/)
 - **E-mail:** ✉️ <ro.go.calves@gmail.com>
