@@ -53,14 +53,14 @@ def display_token_usage():
     modelo = st.session_state.modelo_selecionado
     custo_total = calcular_custo(st.session_state.total_prompt_tokens, st.session_state.total_completion_tokens, modelo)
     
-    st.sidebar.subheader("Uso de Tokens (Acumulado)")
-    st.sidebar.metric("Requisições Bem-sucedidas", st.session_state.total_successful_requests)
+    st.subheader("Uso de Tokens (Acumulado)")
+    st.metric("Requisições Bem-sucedidas", st.session_state.total_successful_requests)
     
-    col1_token, col2_token = st.sidebar.columns(2)
+    col1_token, col2_token = st.columns(2)
     col1_token.metric(label="Tokens do Prompt", value=f"{st.session_state.total_prompt_tokens:,}")
     col2_token.metric(label="Tokens da Resposta", value=f"{st.session_state.total_completion_tokens:,}")
     
-    col1_total, col2_total = st.sidebar.columns(2)
+    col1_total, col2_total = st.columns(2)
     col1_total.metric(label="Total de Tokens", value=f"{st.session_state.total_tokens:,}")
     col2_total.metric("Custo Estimado", f"${custo_total:.4f}")    
 
@@ -73,28 +73,19 @@ def analisar_texto(texto):
     
 # Dessa forma evitamos o erro WARNING: Overriding of current TracerProvider is not allowed    
 @st.cache_resource
-def get_controller():
+def criar_roteirizador():
     return RoteiristaController()
 
-controller = get_controller()
+controller = criar_roteirizador()
 
 def main():
     # Sidebar       
-    st.sidebar.info("Esta ferramenta transforma um texto base em um roteiro estruturado.")   
-    
-    # Seleção do modelo
-    st.session_state.modelo_selecionado = st.sidebar.selectbox(
-        "Selecione o modelo para calcular custo",
-        options=list(MODELOS.keys()),
-    )
-    
-    # Display Token Usage KPIs in sidebar
-    display_token_usage()
+    st.sidebar.info("Esta ferramenta transforma um texto base em um roteiro estruturado.") 
    
-    # Input area
+    # Condiguração Roteirizador
     if st.session_state.show_input:
-        st.subheader("Texto Base")
-        texto_base = st.text_area("Digite ou cole seu texto base aqui", height=200, key="input_text")
+        st.subheader("Configurar Roteirizador")
+        texto_base = st.text_area(label="Digite ou cole seu texto aqui", height=200, key="input_text")
         analise_base = analisar_texto(texto_base)
         st.write(f"Caracteres: {len(texto_base)} | Palavras: {analise_base['num_palavras']}")
 
@@ -133,8 +124,8 @@ def main():
             st.session_state.show_input = True
             st.rerun()
 
-    # Output area
     if not st.session_state.show_input and st.session_state.tasks_output:
+        # Resultados Roteirizador
         st.subheader("Resultados das Tarefas")
         
         # Criar tabs para cada tarefa
@@ -162,6 +153,18 @@ def main():
                 file_name=f"roteiro_gerado_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
                 mime="text/plain"
             )
+
+        st.divider()
+
+        # Gasto de Tokens   
+        # Seleção do modelo
+        st.session_state.modelo_selecionado = st.sidebar.selectbox(
+            "Selecione o modelo para calcular custo",
+            options=list(MODELOS.keys()),
+        )
+        
+        # Display Token Usage KPIs in sidebar
+        display_token_usage()
 
     # Histórico
     if st.session_state.historico:

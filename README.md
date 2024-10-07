@@ -62,7 +62,12 @@ Antes de começar, certifique-se de ter os seguintes itens instalados:
 - **Python** (versão >= 3.10 e <= 3.13) 🐍
 - **Poetry** (ferramenta de gerenciamento de dependências e ambientes virtuais) 📦
 
-#### 1. Instalando o Python 🐍
+#### Configuração do Ambiente
+
+1. Renomeie o arquivo `.env.exemplo` para `.env`.
+2. Adicione a chave `GROQ_API_KEY` no arquivo `.env`. A chave pode ser obtida em [Groq Console](https://console.groq.com/login), clicando em "API Keys" após o login.
+
+#### Instalando o Python 🐍
 
 Se você ainda não tem o Python instalado, siga os passos abaixo:
 
@@ -84,7 +89,7 @@ Se você ainda não tem o Python instalado, siga os passos abaixo:
      sudo apt-get install python3.10
      ```
 
-#### 2. Instalando o Poetry 📦
+#### Instalando o Poetry 📦
 
 Para instalar o Poetry, siga os passos abaixo:
 
