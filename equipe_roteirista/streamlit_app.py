@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from datetime import datetime
 from equipe.roteirista_execute import RoteiristaController
+import yaml
 
 # Config
 st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬")
@@ -19,6 +20,10 @@ MODELOS = {
     "grog-Llama 3.1 70B": {"prompt": 0.59, "completion": 0.79},
     "groq-Llama 3.1 8B": {"prompt": 0.05, "completion": 0.08},
 }
+
+# Load the YAML file
+with open('equipe_roteirista/texto_base_examples.yaml', 'r') as file:
+    texto_base_examples = yaml.safe_load(file)
 
 # Initial State
 if 'texto_base' not in st.session_state:
@@ -52,17 +57,13 @@ def calcular_custo(prompt_tokens, completion_tokens, modelo):
 def display_token_usage():
     modelo = st.session_state.modelo_selecionado
     custo_total = calcular_custo(st.session_state.total_prompt_tokens, st.session_state.total_completion_tokens, modelo)
+           
+    st.metric("Custo Estimado", f"${custo_total:.4f}")    
     
-    st.subheader("Uso de Tokens (Acumulado)")
-    st.metric("Requisições Bem-sucedidas", st.session_state.total_successful_requests)
-    
-    col1_token, col2_token = st.columns(2)
+    col1_token, col2_token, col3_token = st.columns(3)
     col1_token.metric(label="Tokens do Prompt", value=f"{st.session_state.total_prompt_tokens:,}")
     col2_token.metric(label="Tokens da Resposta", value=f"{st.session_state.total_completion_tokens:,}")
-    
-    col1_total, col2_total = st.columns(2)
-    col1_total.metric(label="Total de Tokens", value=f"{st.session_state.total_tokens:,}")
-    col2_total.metric("Custo Estimado", f"${custo_total:.4f}")    
+    col3_token.metric(label="Total de Tokens", value=f"{st.session_state.total_tokens:,}")
 
 def analisar_texto(texto):
     palavras = texto.split()
@@ -85,7 +86,17 @@ def main():
     # Condiguração Roteirizador
     if st.session_state.show_input:
         st.subheader("Configurar Roteirizador")
-        texto_base = st.text_area(label="Digite ou cole seu texto aqui", height=200, key="input_text")
+        
+        # Add a selectbox for choosing predefined examples
+        example_options = ["Escreva seu próprio texto"] + [example['titulo'] for example in texto_base_examples['exemplos']]
+        selected_example = st.selectbox("Escolha um exemplo ou escreva seu próprio texto", options=example_options)
+        
+        if selected_example == "Escreva seu próprio texto":
+            texto_base = st.text_area(label="Digite ou cole seu texto aqui", height=200, key="input_text")
+        else:
+            selected_text = next(example['texto'] for example in texto_base_examples['exemplos'] if example['titulo'] == selected_example)
+            texto_base = st.text_area(label="Digite ou cole seu texto aqui", value=selected_text, height=200, key="input_text")
+        
         analise_base = analisar_texto(texto_base)
         st.write(f"Caracteres: {len(texto_base)} | Palavras: {analise_base['num_palavras']}")
 
@@ -120,7 +131,7 @@ def main():
             st.session_state.show_input = False
             st.rerun()  # Rerun to update sidebar
     else:
-        if st.button("Novo Roteiro"):
+        if st.button("Novo Roteiro", icon="🧪"):
             st.session_state.show_input = True
             st.rerun()
 
@@ -149,6 +160,7 @@ def main():
         if st.session_state.texto_roteirizado:
             st.download_button(
                 label="Baixar Roteiro",
+                icon="🪄",
                 data=st.session_state.texto_roteirizado,
                 file_name=f"roteiro_gerado_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
                 mime="text/plain"
@@ -158,21 +170,24 @@ def main():
 
         # Gasto de Tokens   
         # Seleção do modelo
-        st.session_state.modelo_selecionado = st.sidebar.selectbox(
+        st.subheader("Uso de Tokens (Acumulado)")
+        st.session_state.modelo_selecionado = st.selectbox(
             "Selecione o modelo para calcular custo",
             options=list(MODELOS.keys()),
         )
         
         # Display Token Usage KPIs in sidebar
         display_token_usage()
+        
+        st.divider()
 
     # Histórico
     if st.session_state.historico:
         st.subheader("Histórico de Roteiros")
         for i, item in enumerate(reversed(st.session_state.historico)):
             with st.expander(f"Roteiro {len(st.session_state.historico) - i}: {item['data']}"):
-                st.text_area("Texto Base", item['texto_base'], height=100, disabled=True)
-                st.text_area("Roteiro Gerado", item['roteiro'], height=200)               
+                st.text_area("Texto Base", item['texto_base'], height=100, disabled=True, key=f"texto-base-{i}")
+                st.text_area("Roteiro Gerado", item['roteiro'], height=200, key=f"roteiro-gerado-{i}")               
                 st.write("**Uso de Tokens:**")
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Total", f"{item['token_usage']['total_tokens']:,}")
@@ -185,7 +200,7 @@ def main():
                     for task in item['tasks_output']:
                         st.write(f"**Agente:** {task.agent}")
                         st.write(f"**Tarefa:** {task.name}")
-                        st.text_area("Resultado", value=task.raw, height=150, disabled=True)                       
+                        st.text_area("Resultado", value=task.raw, height=150, disabled=True, key=f"resultado-{i}-{task.agent}")                       
                    
 
 if __name__ == "__main__":

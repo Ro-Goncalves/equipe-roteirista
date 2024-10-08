@@ -7,9 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<=3.13"
-crewai = {extras = ["tools"], version = "^0.63.6"}
-streamlit = "^1.38.0"
+streamlit = "^1.39.0"
 pysqlite3-binary = "^0.5.3.post1"
+crewai = {extras = ["tools"], version = "^0.67.1"}
 
 [build-system]
 requires = ["poetry-core"]
