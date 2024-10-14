@@ -1,4 +1,4 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from typing import List
 from .agente_config import AgenteConfig
@@ -104,5 +104,39 @@ class RoteiristaCrew():
             tasks=self.tasks,
             process=Process.sequential,
             cache=True,
-            verbose=True,			
+            verbose=True,
+            planning=True,
+            planning_llm=LLM(model="groq/llama-3.2-90b-text-preview", temperature=0.35),
+            memory=True,
+            embedder={
+                "provider": "google",
+                "config": {
+                    "model": 'models/text-embedding-004',
+                    "task_type": "retrieval_document",
+                    "title": "Embeddings for Embedchain"
+                }
+            }
+            # long_term_memory=EnhanceLongTermMemory(
+            #     storage=LTMSQLiteStorage(
+            #         db_path="/my_data_dir/my_crew1/long_term_memory_storage.db"
+            #     )
+            # ),
+            # short_term_memory=EnhanceShortTermMemory(
+            #     storage=CustomRAGStorage(
+            #         crew_name="my_crew",
+            #         storage_type="short_term",
+            #         data_dir="//my_data_dir",
+            #         model=embedder["model"],
+            #         dimension=embedder["dimension"],
+            #     ),
+            # ),
+            # entity_memory=EnhanceEntityMemory(
+            #     storage=CustomRAGStorage(
+            #         crew_name="my_crew",
+            #         storage_type="entities",
+            #         data_dir="//my_data_dir",
+            #         model=embedder["model"],
+            #         dimension=embedder["dimension"],
+            #     ),
+            # ),
         )
