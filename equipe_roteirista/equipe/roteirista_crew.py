@@ -115,28 +115,5 @@ class RoteiristaCrew():
                     "task_type": "retrieval_document",
                     "title": "Embeddings for Embedchain"
                 }
-            }
-            # long_term_memory=EnhanceLongTermMemory(
-            #     storage=LTMSQLiteStorage(
-            #         db_path="/my_data_dir/my_crew1/long_term_memory_storage.db"
-            #     )
-            # ),
-            # short_term_memory=EnhanceShortTermMemory(
-            #     storage=CustomRAGStorage(
-            #         crew_name="my_crew",
-            #         storage_type="short_term",
-            #         data_dir="//my_data_dir",
-            #         model=embedder["model"],
-            #         dimension=embedder["dimension"],
-            #     ),
-            # ),
-            # entity_memory=EnhanceEntityMemory(
-            #     storage=CustomRAGStorage(
-            #         crew_name="my_crew",
-            #         storage_type="entities",
-            #         data_dir="//my_data_dir",
-            #         model=embedder["model"],
-            #         dimension=embedder["dimension"],
-            #     ),
-            # ),
+            }           
         )

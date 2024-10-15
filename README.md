@@ -12,8 +12,9 @@
 - [Tecnologias Utilizadas ⚙️](#tecnologias-utilizadas-️)
 - [Instalação 🛠️](#instalação-️)
   - [Pré-requisitos](#pré-requisitos)
-    - [1. Instalando o Python 🐍](#1-instalando-o-python-)
-    - [2. Instalando o Poetry 📦](#2-instalando-o-poetry-)
+    - [Configuração do Ambiente](#configuração-do-ambiente)
+    - [Instalando o Python 🐍](#instalando-o-python-)
+    - [Instalando o Poetry 📦](#instalando-o-poetry-)
   - [Passo a Passo](#passo-a-passo)
 - [Como Usar 🚀](#como-usar-)
 - [Planejamento 🛠️](#planejamento-️)
@@ -185,7 +186,7 @@ Minha visão para o **Roteirizador** vai além da versão atual. Estou trabalhan
   Adicionar uma funcionalidade que forneça um feedback das execuções de cada tarefa dos agentes.
 
 - **Memória dos agentes** 🧠  
-  Desenvolver uma memória para a equipe de agentes, tornando-os mais inteligentes a cada nova execução e permitindo que aprendam com os processos anteriores.
+  ~~Desenvolver uma memória para a equipe de agentes, tornando-os mais inteligentes a cada nova execução e permitindo que aprendam com os processos anteriores.~~
 
 - **Treinamento da equipe** 📚  
   Implementar uma funcionalidade para treinar os agentes com novos dados e melhorar suas habilidades ao longo do tempo.
