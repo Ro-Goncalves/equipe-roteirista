@@ -204,11 +204,14 @@ def main():
                    
 roteirizador_page = st.Page(main, title="Roteirizador", icon=":material/logout:", default=True)
 
-objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/logout:", default=True)
-visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/logout:", default=True)
+objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/logout:")
+visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/logout:")
 
-pg = st.navigation({"Home": [roteirizador_page]})
-pg = st.navigation({"Sobre": [objetivo_page, visao_geral_page]})
+pg = st.navigation({
+    "Home": [roteirizador_page],
+    "Sobre": [objetivo_page, visao_geral_page],
+})
+
 
 if __name__ == "__main__":
     pg.run()
