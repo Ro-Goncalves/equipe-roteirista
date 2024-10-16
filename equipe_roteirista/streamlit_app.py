@@ -202,6 +202,13 @@ def main():
                         st.write(f"**Tarefa:** {task.name}")
                         st.text_area("Resultado", value=task.raw, height=150, disabled=True, key=f"resultado-{i}-{task.agent}")                       
                    
+roteirizador_page = st.Page(main, title="Roteirizador", icon=":material/logout:", default=True)
+
+objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/logout:", default=True)
+visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/logout:", default=True)
+
+pg = st.navigation({"Home": [roteirizador_page]})
+pg = st.navigation({"Sobre": [objetivo_page, visao_geral_page]})
 
 if __name__ == "__main__":
-    main()
+    pg.run()
