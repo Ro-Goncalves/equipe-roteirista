@@ -208,8 +208,8 @@ def main():
                    
 roteirizador_page = st.Page(main, title="Roteirizador", icon=":material/home_work:", default=True)
 
-objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/info:")
-visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/description:")
+objetivo_page = st.Page("paginas/sobre/objetivo.py", title="Objetivo", icon=":material/info:")
+visao_geral_page = st.Page("paginas/sobre/visao_geral.py", title="Visão Geral", icon=":material/description:")
 
 pg = st.navigation({
     "Home": [roteirizador_page],
