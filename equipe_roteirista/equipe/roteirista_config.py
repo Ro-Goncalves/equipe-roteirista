@@ -9,5 +9,5 @@ def default_config() -> Dict[str, Any]:
         Dict[str, Any]: Um dicionário contendo 'max_rpm' e a lista 'agente_config'.
     """    
     return {        
-        'agente_config': [AgenteConfig(model_name='groq/llama3-8b-8192', max_rpm=30) for _ in range(3)]
+        'agente_config': [AgenteConfig(model_name='groq/llama-3.1-8b-instant', max_rpm=30) for _ in range(3)]
     }

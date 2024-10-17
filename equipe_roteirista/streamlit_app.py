@@ -5,7 +5,7 @@ from equipe.roteirista_execute import RoteiristaController
 import yaml
 
 # Config
-st.set_page_config(layout="wide", page_title="Roteirizador", page_icon="🎬")
+st.set_page_config(layout="centered", page_title="Roteirizador", page_icon="🎬")
 st.title("🎥 Roteirizador")
 
 # Definição dos modelos e seus custos
@@ -81,7 +81,11 @@ controller = criar_roteirizador()
 
 def main():
     # Sidebar       
-    st.sidebar.info("Esta ferramenta transforma um texto base em um roteiro estruturado.") 
+    st.sidebar.info("""        
+        O **Roteirizador** é uma ferramenta que converte textos em roteiros 
+        detalhados e criativos, utilizando inteligência artificial para 
+        criar narrativas envolventes "e" ~~diálogos dinâmicos entre personagens~~.
+    """) 
    
     # Condiguração Roteirizador
     if st.session_state.show_input:
@@ -202,10 +206,10 @@ def main():
                         st.write(f"**Tarefa:** {task.name}")
                         st.text_area("Resultado", value=task.raw, height=150, disabled=True, key=f"resultado-{i}-{task.agent}")                       
                    
-roteirizador_page = st.Page(main, title="Roteirizador", icon=":material/logout:", default=True)
+roteirizador_page = st.Page(main, title="Roteirizador", icon=":material/home_work:", default=True)
 
-objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/logout:")
-visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/logout:")
+objetivo_page = st.Page("pages/sobre/objetivo.py", title="Objetivo", icon=":material/info:")
+visao_geral_page = st.Page("pages/sobre/visao_geral.py", title="Visão Geral", icon=":material/description:")
 
 pg = st.navigation({
     "Home": [roteirizador_page],

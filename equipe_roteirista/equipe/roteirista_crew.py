@@ -106,7 +106,7 @@ class RoteiristaCrew():
             cache=True,
             verbose=True,
             planning=True,
-            planning_llm=LLM(model="groq/llama-3.2-90b-text-preview", temperature=0.35),
+            planning_llm=LLM(model="groq/llama-3.2-11b-text-preview", temperature=0.35),
             memory=True,
             embedder={
                 "provider": "google",
