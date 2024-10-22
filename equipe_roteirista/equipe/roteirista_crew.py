@@ -2,6 +2,8 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from typing import List
 from .agente_config import AgenteConfig
+import chromadb.utils.embedding_functions as embedding_functions
+import os
 
 @CrewBase
 class RoteiristaCrew():
@@ -106,14 +108,10 @@ class RoteiristaCrew():
             cache=True,
             verbose=True,
             planning=True,
-            planning_llm=LLM(model="groq/llama-3.2-11b-text-preview", temperature=0.35),
+            planning_llm=LLM(model="groq/llama-3.1-8b-instant", temperature=0.35),
             memory=True,
-            embedder={
-                "provider": "google",
-                "config": {
-                    "model": 'models/text-embedding-004',
-                    "task_type": "retrieval_document",
-                    "title": "Embeddings for Embedchain"
-                }
-            }           
+            embedder=embedding_functions.GoogleGenerativeAiEmbeddingFunction(
+                api_key=os.getenv("GEMINI_API_KEY"),
+                model_name="models/text-embedding-004"
+            )     
         )
