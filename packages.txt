@@ -1,29 +1,19 @@
-#!/bin/bash
-
-# Instalar dependências necessárias
 sudo apt update
 sudo apt install -y build-essential wget gcc make tcl
 
-# Criar diretório temporário e entrar nele
 mkdir ~/sqlite_install
 cd ~/sqlite_install
 
-# Baixar o código fonte do SQLite
 wget https://sqlite.org/2021/sqlite-autoconf-3350300.tar.gz
 
-# Descompactar
 tar xvfz sqlite-autoconf-3350300.tar.gz
 
-# Entrar no diretório
 cd sqlite-autoconf-3350300
 
-# Configurar e compilar
 ./configure --prefix=/usr/local
 make
 sudo make install
 
-# Atualizar as bibliotecas dinâmicas
 sudo ldconfig
 
-# Verificar a versão instalada
 sqlite3 --version
