@@ -1,5 +1,8 @@
+import pysqlite3
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
-from PIL import Image
 from datetime import datetime
 import sys
 from equipe.roteirista_execute import RoteiristaController
