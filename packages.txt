@@ -1,1 +1,1 @@
-sqlite3=3.35.0
+--compile sqlite3=3.35.0
