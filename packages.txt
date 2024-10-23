@@ -1,9 +1,3 @@
-sudo apt update
-sudo apt install -y build-essential wget gcc make tcl
-
-mkdir ~/sqlite_install
-cd ~/sqlite_install
-
 wget https://sqlite.org/2021/sqlite-autoconf-3350300.tar.gz
 
 tar xvfz sqlite-autoconf-3350300.tar.gz
