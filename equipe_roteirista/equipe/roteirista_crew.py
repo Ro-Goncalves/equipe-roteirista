@@ -111,7 +111,7 @@ class RoteiristaCrew():
             planning_llm=LLM(model="groq/llama-3.1-8b-instant", temperature=0.35),
             memory=True,
             embedder=embedding_functions.GoogleGenerativeAiEmbeddingFunction(
-                api_key=os.getenv("GEMINI_API_KEY"),
+                api_key=os.getenv("GOOGLE_API_KEY"),
                 model_name="models/text-embedding-004"
             )     
         )

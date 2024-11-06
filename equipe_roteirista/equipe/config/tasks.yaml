@@ -1,6 +1,6 @@
 tarefa_analise_texto:
   description: >
-    Sua tarefa é **analisar** o conteúdo fornecido (<texto_base>) e **extrair** as **informações narrativas essenciais** 
+    Sua tarefa é **analisar** o conteúdo fornecido <texto_base> e **extrair** as **informações narrativas essenciais** 
     que servirão como base para a criação de um **roteiro detalhado**. O objetivo é organizar essas informações de 
     forma clara, para que elas facilitem a tarefa de **roteirização**, proporcionando uma estrutura sólida para o 
     desenvolvimento do roteiro.    

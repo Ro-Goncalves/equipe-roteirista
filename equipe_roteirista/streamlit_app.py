@@ -26,7 +26,7 @@ MODELOS = {
 }
 
 # Load the YAML file
-with open('equipe_roteirista/texto_base_examples.yaml', 'r') as file:
+with open('equipe_roteirista/texto_base_examples.yaml', 'r', encoding='utf-8') as file:
     texto_base_examples = yaml.safe_load(file)
 
 # Initial State
