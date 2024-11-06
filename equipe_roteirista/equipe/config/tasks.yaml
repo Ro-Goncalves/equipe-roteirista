@@ -3,9 +3,7 @@ tarefa_analise_texto:
     Sua tarefa é **analisar** o conteúdo fornecido (<texto_base>) e **extrair** as **informações narrativas essenciais** 
     que servirão como base para a criação de um **roteiro detalhado**. O objetivo é organizar essas informações de 
     forma clara, para que elas facilitem a tarefa de **roteirização**, proporcionando uma estrutura sólida para o 
-    desenvolvimento do roteiro.
-    
-    
+    desenvolvimento do roteiro.    
 
     <texto_base>  
     {texto_base}  
@@ -72,6 +70,10 @@ tarefa_revisao_roteiro:
     Analisando também se as **Emoções** e **Tópicos de Conversa** estão **Bem Representados** e se há 
     **Transições Fluidas** entre as partes. Em caso de **Inconsistências**, **Sugerir Ajustes** que 
     alinhem o roteiro com o **Contexto Emocional** e **Narrativo Original**.
+
+    <texto_base>  
+    {texto_base}  
+    </texto_base>
    
   expected_output: >
     Você deverá entregar um **Roteiro Revisado**, que deve ser escrito em **Português Brasileiro**, garantindo que todas as 

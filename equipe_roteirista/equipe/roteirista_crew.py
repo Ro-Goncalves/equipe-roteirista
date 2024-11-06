@@ -64,10 +64,10 @@ class RoteiristaCrew():
     def revisor_roteiro(self) -> Agent: 
         return Agent(
             config=self.agents_config['revisor_roteiro'],
-            llm=self.revisor_roteiro_config.model_name,
+            llm=LLM(model="gemini/gemini-1.5-pro", temperature=0.75),
             max_rpm=self.revisor_roteiro_config.max_rpm,
             memory=True,
-            allow_delegation=True,
+            allow_delegation=False,
             verbose=True,
         )
     
